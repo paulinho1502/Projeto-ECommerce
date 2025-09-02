@@ -1,4 +1,3 @@
-
 -- DML (Data Manipulation Language)
 -- INSERT (Cadastrar)
 -- UPDATE (Atualizar)
@@ -44,22 +43,5 @@ WHERE valor > 500 AND valor < 1000;
 -- DELETE 
 DELETE FROM clinica.medico
 WHERE id_medico = 1;
-
-
-
-INSERT INTO  ecommerce.cliente(nome_completo, telefone, email, senha, data_cadastro) VALUES
-('paulo', '11969035973','pp','123','2025-01-22');
-
-SELECT * FROM ecommerce.cliente;
-
-INSERT INTO ecommerce.pedido(data_pedido, valor_total, status, id_cliente) VALUES
-('2025-04-9', 2500, 'empacotando',2);
-
-DELETE FROM ecommerce.pedido
-WHERE id_pedido = 2;
-
-SELECT * FROM ecommerce.produto;
-
-
 
 
