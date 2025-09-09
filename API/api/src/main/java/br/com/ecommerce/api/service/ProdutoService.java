@@ -20,5 +20,9 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
+    public Produto cadastrarProduto(Produto pr) {
+        return produtoRepository.save(pr);
+    }
+
 
 }
