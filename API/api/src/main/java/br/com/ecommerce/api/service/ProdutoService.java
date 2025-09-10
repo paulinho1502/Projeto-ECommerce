@@ -24,5 +24,22 @@ public class ProdutoService {
         return produtoRepository.save(pr);
     }
 
+    public Produto buscarPorId(Integer id) {
+        return produtoRepository.findById(id).orElse(null);
+    }
+    //DELETE
+    public Produto deletarProduto(Integer id) {
+        // 1.
+      Produto produto = buscarPorId(id);
+
+      // 2.
+        if(produto == null) {
+            return null;
+        }
+        // 3.
+        produtoRepository.delete(produto);
+        return produto;
+    }
+
 
 }

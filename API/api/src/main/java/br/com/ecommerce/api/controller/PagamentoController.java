@@ -2,10 +2,9 @@ package br.com.ecommerce.api.controller;
 
 import br.com.ecommerce.api.model.Pagamento;
 import br.com.ecommerce.api.service.PagamentoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,16 @@ public class PagamentoController {
 
 
     }
+
+    @PostMapping
+    public ResponseEntity<Pagamento> cadastrarPagamento(
+            @RequestBody Pagamento pagamento
+    ){
+        pagamentoService.cadastrarPagamento(pagamento);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(pagamento);
+    }
+
+
 
 }
