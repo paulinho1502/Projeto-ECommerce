@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ClienteService {
+public class  ClienteService {
     // Injeçao de dependencia
     // falar que Service depende de alguem
     // final - constante
@@ -42,5 +42,26 @@ public class ClienteService {
         // 3. se existir, excluo
         clienteRepository.delete(cliente);
         return cliente;
+    }
+
+
+    // ATUALIZAR
+    public Cliente atualizarCliente(Integer id, Cliente clienteNovo)  {
+        // 1. Procurar quem eu quero atualizar
+        Cliente clienteAntigo = buscarPorId(id);
+
+        // 2. Se eu não achar retorno nullo
+        if (clienteAntigo == null)
+        {
+            return null;
+        }
+
+        // 3. Se eu achar eu atualizo
+        clienteAntigo.setSenha(clienteNovo.getSenha());
+        clienteAntigo.setNomeCompleto(clienteNovo.getNomeCompleto());
+        clienteAntigo.setDataCadastro(clienteNovo.getDataCadastro());
+        clienteAntigo.setTelefone(clienteNovo.getTelefone());
+        return clienteRepository.save(clienteAntigo);
+
     }
 }

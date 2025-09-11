@@ -36,7 +36,7 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(produto);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
 
     public ResponseEntity<?> buscarProdutoPorId(@PathVariable Integer id) {
         // 1.
@@ -52,6 +52,21 @@ public class ProdutoController {
         return ResponseEntity.ok(produto);
     }
 
-    // falta delete
-    @DeleteMapping()
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarProduto(@PathVariable Integer id) {
+
+        // 1.
+        Produto produto = produtoService.deletarProduto(id);
+
+        // 2.
+        if(produto == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto " + id + "não encontrado!");
+
+        }
+
+        // 3.
+        return ResponseEntity.ok(produto);
+    }
+
 }

@@ -19,4 +19,24 @@ public Pagamento cadastrarPagamento(Pagamento pg){
         return pagamentoRepository.save(pg);
 }
 
+public Pagamento buscarPorId(Integer id){
+
+    return pagamentoRepository.findById(id).orElse(null);
+}
+
+// DELETE
+    public Pagamento deletarPagamento(Integer id) {
+        // 1.
+        Pagamento pagamento = buscarPorId(id);
+
+        // 2.
+        if (pagamento == null) {
+            return null;
+        }
+
+        // 3.
+        pagamentoRepository.delete(pagamento);
+        return pagamento;
+    }
+
 }

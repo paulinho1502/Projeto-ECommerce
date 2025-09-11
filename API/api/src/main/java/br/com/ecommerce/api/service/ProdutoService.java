@@ -24,6 +24,8 @@ public class ProdutoService {
         return produtoRepository.save(pr);
     }
 
+
+
     public Produto buscarPorId(Integer id) {
         return produtoRepository.findById(id).orElse(null);
     }

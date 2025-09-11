@@ -9,6 +9,7 @@ import java.util.List;
 @Service
 public class ItemDoPedidoService {
 
+
     private final ItemDoPedidoRepository itemdopedidoRepository;
 
     public ItemDoPedidoService(ItemDoPedidoRepository  repo) {
@@ -23,4 +24,24 @@ public class ItemDoPedidoService {
         return itemdopedidoRepository.save(item);
     }
 
+
+    public ItemDoPedido buscarPorId(Integer id) {
+        return itemdopedidoRepository.findById(id).orElse(null);
+    }
+
+    // DELETE
+    public ItemDoPedido deletarItem(Integer id){
+        // 1.
+        ItemDoPedido item = buscarPorId(id);
+
+        // 2.
+        if (item == null) {
+            return null;
+
+        }
+
+        // 3.
+        itemdopedidoRepository.delete(item);
+        return item;
+    }
 }

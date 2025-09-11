@@ -35,4 +35,39 @@ itemdopedidoService.cadastrarItemDoPedido(itemdopedido);
 return ResponseEntity.status(HttpStatus.CREATED).body(itemdopedido);
 
     }
-}
+
+    @GetMapping("/{id}")
+
+    public ResponseEntity<?> buscarItemDoPedido(@PathVariable Integer id) {
+        // 1.
+        ItemDoPedido item = itemdopedidoService.buscarPorId(id);
+
+        // 2.
+        if (item == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item " + id + " não encontrado");
+        }
+            // 3.
+            return ResponseEntity.ok(item);
+        }
+
+
+
+        @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarItemDoPedido(@PathVariable Integer id) {
+
+        //1.
+            ItemDoPedido item = itemdopedidoService.deletarItem(id);
+
+            // 2.
+            if(item == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("item " + id + "não encontrados!");
+            }
+                // 3.
+                return ResponseEntity.ok(item);
+
+
+            }
+        }
+
+
+

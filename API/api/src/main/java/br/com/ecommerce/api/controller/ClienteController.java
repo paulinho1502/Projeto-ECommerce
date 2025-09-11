@@ -75,4 +75,17 @@ public class ClienteController {
         return ResponseEntity.ok(cliente);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarCLiente(
+            @PathVariable Integer id, @RequestBody Cliente clienteNovo) {
+        // 1. Tento atualizar cliente
+        Cliente cl = clienteService.atualizarCliente(id, clienteNovo);
+
+        // 2.Se não achar o cliente, mostro erro
+        if(cl == null) {
+            return ResponseEntity.status(404).body("Cliente não encontrado!;");
+        }
+        // 3. Se achar retorno ok
+        return ResponseEntity.ok(cl);
+    }
 }

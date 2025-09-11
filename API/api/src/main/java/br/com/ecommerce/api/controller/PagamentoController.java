@@ -25,13 +25,28 @@ public class PagamentoController {
 
     }
 
-    @PostMapping
+    @GetMapping("/{id}")
     public ResponseEntity<Pagamento> cadastrarPagamento(
             @RequestBody Pagamento pagamento
     ){
         pagamentoService.cadastrarPagamento(pagamento);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(pagamento);
+    }
+
+    @DeleteMapping("/{id}")
+
+    public ResponseEntity<?> deletarPagamento(@PathVariable Integer id) {
+        // 1.
+        Pagamento pagamento = pagamentoService.deletarPagamento(id);
+
+        // 2.
+        if(pagamento == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("pagamento " + id + "não encontrado");
+        }
+
+        // 3.
+        return ResponseEntity.ok(pagamento);
     }
 
 

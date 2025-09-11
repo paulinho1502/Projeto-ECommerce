@@ -25,4 +25,22 @@ public class PedidoService {
         return pedidoRepository.save(pd);
     }
 
+
+    public Pedido buscarPorId(Integer id) {
+        return pedidoRepository.findById(id).orElse(null);
+
+    }
+
+    // DELETE
+    public Pedido deletarPedido(Integer id) {
+        // 1.
+        Pedido pedido = buscarPorId(id);
+
+        // 2.
+        if (pedido == null) {
+            return null;
+        }
+        pedidoRepository.delete(pedido);
+        return pedido;
+    }
 }

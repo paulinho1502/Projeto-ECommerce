@@ -33,4 +33,34 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
 
     }
+
+    @GetMapping("/{id}")
+
+    public ResponseEntity<?> buscarPedidoPorId(@PathVariable Integer id) {
+        // 1.
+        Pedido pedido = pedidoService.buscarPorId(id);
+
+        // 2.
+        if(pedido == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("pedido" + id + "não encontrado!");
+
+        }
+        return ResponseEntity.ok(pedido);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarPedido(@PathVariable Integer id) {
+
+        // 1.
+        Pedido pedido = pedidoService.deletarPedido(id);
+
+        // 2.
+        if(pedido == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("pedido " + id + "não encontrado1");
+
+        }
+        return ResponseEntity.ok(pedido);
+
+
+    }
 }
