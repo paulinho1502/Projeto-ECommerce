@@ -65,8 +65,28 @@ return ResponseEntity.status(HttpStatus.CREATED).body(itemdopedido);
                 // 3.
                 return ResponseEntity.ok(item);
 
-
             }
+
+
+            @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarItemDoPedido(
+            @PathVariable Integer id, @RequestBody ItemDoPedido itemNovo) {
+
+        // 1.
+                ItemDoPedido item = itemdopedidoService.atualizarItem(id, itemNovo);
+
+                // 2. Se nao achar o item, mostro erro
+                if( item == null) {
+                    return ResponseEntity.status(404).body("Item nao encontradoo!");
+                }
+
+                // 3. Se achar retorno ok
+                return ResponseEntity.ok(item);
+            }
+
+
+
+
         }
 
 

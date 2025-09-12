@@ -61,6 +61,20 @@ public class PedidoController {
         }
         return ResponseEntity.ok(pedido);
 
-
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarPedido(
+            @PathVariable Integer id, @RequestBody Pedido pedidoNovo) {
+        // 1. Tento atualizar Pedido
+        Pedido pd = pedidoService.atualizarPedido(id, pedidoNovo);
+
+        // 2. Se nao achar retorno erro
+        if(pd == null) {
+            return ResponseEntity.status(404).body("Pedido nao encontrado!");
+        }
+        // 3. Se achar Atualizp
+        return ResponseEntity.ok(pd);
+    }
+
 }

@@ -43,5 +43,26 @@ public class ProdutoService {
         return produto;
     }
 
+    // ATUALIZAR
+    public Produto atualizarProduto(Integer id, Produto produtoNovo) {
+        // 1. Procurar quem quero atualizar
+        Produto produtoAntigo = buscarPorId(id);
+
+        // 2. Se eu nao achar retorno nullo
+        if (produtoAntigo == null) {
+        return null;
+        }
+
+        // 3. Se eu achar eu atualizo
+        produtoAntigo.setNomeProduto(produtoNovo.getNomeProduto());
+        produtoAntigo.setDescricao(produtoNovo.getDescricao());
+        produtoAntigo.setEstoque(produtoNovo.getEstoque());
+        produtoAntigo.setPreco(produtoNovo.getPreco());
+        produtoAntigo.setImagemUrl(produtoNovo.getImagemUrl());
+        return produtoRepository.save(produtoAntigo);
+
+    }
+
+
 
 }
