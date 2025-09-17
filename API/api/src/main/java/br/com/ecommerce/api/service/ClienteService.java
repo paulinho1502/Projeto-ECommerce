@@ -26,6 +26,7 @@ public class  ClienteService {
         return clienteRepository.save(cl);
     }
 
+    // BUSCAR
     public Cliente buscarPorId(Integer id) {
         return clienteRepository.findById(id).orElse(null);
     }

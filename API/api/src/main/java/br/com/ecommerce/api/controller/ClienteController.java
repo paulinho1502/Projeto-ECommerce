@@ -33,6 +33,7 @@ public class ClienteController {
 
         return ResponseEntity.ok(clientes);
     }
+    
 
     @PostMapping
     public ResponseEntity<Cliente> cadastrarCliente(

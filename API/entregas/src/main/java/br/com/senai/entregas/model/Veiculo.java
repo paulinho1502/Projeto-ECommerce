@@ -15,13 +15,13 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "veiculo")
-public class Veiculos {
+public class Veiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="veiculo_id")
     private Integer veiculoId;
 
-    @Column(name = "placa", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "placa", nullable = false, columnDefinition = "TEXT", unique = true)
     private String placa;
 
     @Column(name = "modelo", nullable = false, columnDefinition = "TEXT")
