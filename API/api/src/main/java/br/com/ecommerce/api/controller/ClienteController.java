@@ -39,6 +39,7 @@ public class ClienteController {
     public ResponseEntity<Cliente> cadastrarCliente(
     @RequestBody Cliente cliente
     ){
+
         //1. Tentar cadastrar o cliente
         // Codigo 200 - ok
         clienteService.cadastrarCliente(cliente);

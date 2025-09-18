@@ -17,7 +17,7 @@ public class UsuarioService {
     }
 
     // Listar todos os usuarios
-    public List<Usuario> listraTodos(){
+    public List<Usuario> listarTodos(){
         return usuarioRepository.findAll();
     }
 
@@ -53,7 +53,7 @@ public class UsuarioService {
         // 1. procurar quem eu quero atualizar
         Usuario usuarioAntigo = buscarPorId(id);
 
-        // 2. Se eu nao ahar retoro nullo
+        // 2. Se eu nao achar retoro nullo
         if (usuarioAntigo == null) {
             return null;
         }

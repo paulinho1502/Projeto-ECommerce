@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuarios:")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -24,9 +24,9 @@ public class UsuarioController {
             summary = "Listar todos os Usuarios",
             description = "Lista todos os clientes sem nenhuma restricao"
     )
-    ResponseEntity<List<Usuario>> listarUsuarios() {
+    ResponseEntity<List<Usuario>> listarUsuario() {
         // 1. Pegar a lista de usuarios
-        List<Usuario> usuarios = usuarioService.listraTodos();
+        List<Usuario> usuarios = usuarioService.listarTodos();
 
         return ResponseEntity.ok(usuarios);
     }
@@ -46,17 +46,49 @@ public class UsuarioController {
     // Buscar usuario por ID
     @GetMapping("/{id}")
 
-    public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable Integer id) {
+    public ResponseEntity<?> buscarUsuarioPorId(@PathVariable Integer id) {
         // 1. Procurar o usuario
         Usuario usuario = usuarioService.buscarPorId(id);
 
-        // 2. Se nao encontrar, retornom nullo
+        // 2. Se nao encontrar, retorno nullo
         if (usuario == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario" + id + " nao encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario " + id + " nao encontrado!");
         }
 
         return ResponseEntity.ok(usuario);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarCliente(@PathVariable Integer id) {
+
+        // 1. verifico se o cliente existe
+        Usuario usuario = usuarioService.deletarUsuario(id);
+
+        // 2. Se nao existir retorno nullo
+        if(usuario == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario " + id + " nao encontrado!");
+        }
+
+        // 3. se existir retorno ok;
+        return ResponseEntity.ok(usuario);
+    }
+
+    // ATUALIZAR
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarUsuario(
+            @PathVariable Integer id , @RequestBody Usuario usuarioNovo) {
+        // 1. Tento atualizar cliente
+        Usuario us = usuarioService.atualizarUsuario(id, usuarioNovo);
+
+        // 2. Se não achar o cliente
+        if(us == null) {
+            return ResponseEntity.status(404).body("Usuario " + id + " nao encontrado!");
+        }
+
+        // Se achar retorno ok
+        return ResponseEntity.ok(us);
+    }
+
 
 
 }
