@@ -51,6 +51,23 @@ public class EnderecoController {
         return ResponseEntity.ok(endereco);
     }
 
+    // DETELTAR
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarEnderecoPorId(@PathVariable Integer id) {
+
+        // 1
+        Endereco endereco = enderecoService.deletarEndereco(id);
+
+        // 2
+        if (endereco == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco " + id + " nao encontrado!");
+        }
+
+        // 3
+        return ResponseEntity.ok(endereco);
+
+    }
+
     // ATUALIZAR
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizarEndereco(
