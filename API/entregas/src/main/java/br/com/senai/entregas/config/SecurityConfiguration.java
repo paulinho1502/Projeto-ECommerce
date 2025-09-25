@@ -27,6 +27,7 @@ public class SecurityConfiguration {
     private String secret = "/1/+D8t0-eN^++vaCs6=193FvowFjs";
 
     // Hashing de senhas
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
